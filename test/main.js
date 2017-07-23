@@ -52,4 +52,26 @@ describe('extract-css', function() {
         };
         compare(path.join('test', 'fixtures', 'malformed.html'), path.join('test', 'expected', 'malformed.html'), path.join('test', 'expected', 'malformed.css'), options, done);
     });
+
+    it('Should be able request both local and remote stylesheets', function(done) {
+        var options = {
+            applyStyleTags: true,
+            removeStyleTags: true,
+            applyLinkTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: false
+        };
+        compare(path.join('test', 'fixtures', 'with-remote.html'), path.join('test', 'expected', 'out-plus-remote.html'), path.join('test', 'expected', 'file-plus-remote.css'), options, done);
+    });
+
+    it('Should be able to skip remote stylesheets', function(done) {
+        var options = {
+            applyStyleTags: true,
+            removeStyleTags: true,
+            applyLinkTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: false
+        };
+        compare(path.join('test', 'fixtures', 'with-remote.html'), path.join('test', 'expected', 'out-plus-remote.html'), path.join('test', 'expected', 'file.css'), options, done);
+    });
 });
