@@ -4,7 +4,8 @@ var assert = require('assert'),
     Batch = require('batch'),
     getStylesData = require('style-data'),
     getStylesheetList = require('list-stylesheets'),
-    getHrefContent = require('href-content');
+    getHrefContent = require('href-content'),
+    httpRadix = /^https?\:\/\//;
 
 module.exports = function (html, options, callback) {
     var batch = new Batch(),
@@ -17,9 +18,11 @@ module.exports = function (html, options, callback) {
         assert.ok(options.url, 'options.url is required');
     }
     data.hrefs.forEach(function (stylesheetHref) {
+      if ((options.skipRemoteStylesheets !== true) || httpRadix.test(stylesheetHref) !== true) {
         batch.push(function (cb) {
-            getHrefContent(stylesheetHref, options.url, cb);
+          getHrefContent(stylesheetHref, options.url, cb);
         });
+      }
     });
     batch.end(function (err, results) {
         var stylesData,
