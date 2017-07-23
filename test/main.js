@@ -45,6 +45,7 @@ describe('extract-css', function() {
     it('Should handle malformed CSS', function(done) {
         var options = {
             applyStyleTags: true,
+            skipRemoteStylesheets: true,
             removeStyleTags: true,
             applyLinkTags: true,
             removeLinkTags: true,
