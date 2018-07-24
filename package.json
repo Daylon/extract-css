@@ -24,7 +24,7 @@
   "dependencies": {
     "batch": "^0.5.2",
     "href-content": "^1.0.0",
-    "list-stylesheets": "^1.1.0",
+    "list-stylesheets": "Daylon/list-stylesheets",
     "style-data": "Daylon/style-data"
   },
   "devDependencies": {
